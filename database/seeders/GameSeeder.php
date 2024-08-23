@@ -13,8 +13,11 @@ class GameSeeder extends Seeder
      */
     public function run(): void
     {
-        Game::create([
+        Game::updateOrCreate([
             'name' => 'Tic Tac Toe',
+            'slug' => 'tic-tac-toe',
+        ], [
+            'path' => 'Games/TicTacToe',
         ]);
     }
 }

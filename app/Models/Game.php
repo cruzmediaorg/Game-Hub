@@ -9,6 +9,11 @@ class Game extends Model
 {
     use HasFactory;
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     public function gameRooms()
     {
         return $this->hasMany(GameRoom::class);
