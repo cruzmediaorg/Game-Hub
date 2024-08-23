@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\GamesController;
+use App\Http\Controllers\GamesRoomController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -15,7 +16,10 @@ Route::get('/', function () {
     ]);
 });
 
-Route::resource('games', GamesController::class)->only(['show']);
+Route::get('/games/{game}', [GamesController::class, 'show'])->name('games.show');
+Route::post('/games/{game}', [GamesController::class, 'store'])->name('games.store');
+Route::get('/games/room/{room}', [GamesRoomController::class, 'show'])->name('games.room.show');
+Route::post('/games/room/{room}/join', [GamesRoomController::class, 'join'])->name('games.room.join');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
